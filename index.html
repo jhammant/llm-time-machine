@@ -203,37 +203,41 @@
     <p class="section-eyebrow">Section 5 · The windshield</p>
     <h2>Where this goes next</h2>
     <p class="body">
-      Projecting conservatively from 2023–2026 trend lines — architecture +
-      quantization + training wins all compounding — here's what a 128GB-class
-      consumer box likely runs in 12 and 24 months.
+      The standard "open-weight will catch up to closed frontier" projection
+      is already outdated. <strong>Qwen 3.6 27B ties or beats Claude 4.5 Opus
+      on multiple hard benchmarks today</strong> — Terminal-Bench 2.0,
+      GPQA Diamond, and SWE-bench Verified are all in Opus territory. Parity
+      isn't a future milestone — it's the starting line for what comes next.
     </p>
     <div class="projection-grid">
       <div class="projection">
         <p class="proj-date">April 2027 (est.)</p>
-        <h3>Qwen-3.7-class or Llama-5-dense</h3>
+        <h3>Closed and open advance in lockstep</h3>
         <ul>
-          <li>MMLU-Pro: <strong>~90</strong> (today's closed-frontier band)</li>
-          <li>GPQA Diamond: <strong>~90</strong></li>
-          <li>SWE-bench Verified: <strong>~83%</strong></li>
-          <li>Speed on 128GB-class hardware: <strong>~22 TPS</strong> (new quants)</li>
+          <li>Local best scores ~90+ on MMLU-Pro, ~90+ on GPQA Diamond</li>
+          <li>Closed frontier moves similarly — neither pulls ahead</li>
+          <li>Same 128GB-class hardware: <strong>~35–45 TPS</strong> at that quality (2-bit quants + speculative decoding)</li>
+          <li>The capability race becomes a tooling race — same intelligence, different delivery</li>
         </ul>
       </div>
       <div class="projection">
         <p class="proj-date">April 2028 (est.)</p>
-        <h3>Open-weight matches today's closed frontier</h3>
+        <h3>The moat isn't intelligence anymore</h3>
         <ul>
-          <li>GPT-5 / Claude Opus 4.5-band capability</li>
-          <li>200B MoE at ~15B active, ~100GB on disk</li>
-          <li>Fits 128GB natively, ~15–25 TPS</li>
-          <li>The gap between local and closed is down to agentic tooling + scale, not raw intelligence</li>
+          <li>On every standard benchmark, local ≈ closed</li>
+          <li>Closed-model advantages shift entirely to infrastructure: agent orchestration, real-time tool use, continual learning, 10M+ context windows</li>
+          <li>Inference-time reasoning (long chains, self-consistency, search) becomes the new compute bottleneck — where cloud has durable leverage</li>
+          <li>For most developer workloads running locally is indistinguishable in quality from calling an API</li>
         </ul>
       </div>
     </div>
     <div class="insight insight-warn">
       <p><strong>Caveat:</strong> Projections are extrapolation from observed
-      trends, not predictions of specific models. But every lever (architecture,
-      quantization, post-training) has years of runway left. The surprise would
-      be if progress <em>slowed</em>, not continued.</p>
+      trends, not predictions of specific models. Some of these gains will
+      happen faster than written (the Qwen 3.5 → 3.6 jump was 2 months, not
+      12); some may stall. But every lever (architecture, quantization,
+      post-training) has years of runway left. The surprise would be if
+      progress <em>slowed</em>, not continued.</p>
     </div>
   </div>
 </section>
