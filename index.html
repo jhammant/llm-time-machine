@@ -18,26 +18,26 @@
     <p class="eyebrow">The LLM Time Machine</p>
     <h1>Your Mac didn't get smarter.<br><span class="accent">The models running on it did.</span></h1>
     <p class="lede">
-      Since July 2023 consumer Apple Silicon hasn't radically changed.
-      The best open-weight LLM you can run on a 128GB Mac has gotten
-      <strong>~4× smarter</strong> on hard benchmarks in 18 months —
-      with zero hardware upgrades.
+      In September 2024, the best local LLM your 128GB Mac could run was a
+      <strong>72-billion-parameter</strong> model scoring 71 on MMLU-Pro at
+      ~8 tokens/sec. Eighteen months later — same machine, <strong>$0 spent</strong> —
+      a <strong>27-billion-parameter</strong> model scores 86 at ~22 tokens/sec.
     </p>
     <p class="lede">
-      Here's the data — and why almost nobody is tracking it.
+      Smaller. Faster. Smarter. All on the same silicon.
     </p>
     <div class="hero-stats">
       <div class="stat">
-        <div class="stat-val">22 → 86</div>
-        <div class="stat-label">Best MMLU-Pro on 128GB Mac<br/>(Jul 2023 → Apr 2026)</div>
+        <div class="stat-val">72B → 27B</div>
+        <div class="stat-label">Params for best-in-class<br/>Sep 2024 (Qwen 2.5 72B)<br/>→ Apr 2026 (Qwen 3.6 27B)</div>
       </div>
       <div class="stat">
-        <div class="stat-val">0% → 77%</div>
-        <div class="stat-label">Best SWE-bench Verified<br/>(same hardware)</div>
+        <div class="stat-val">71 → 86</div>
+        <div class="stat-label">MMLU-Pro on same 128GB Mac<br/>+15 points, -63% params</div>
       </div>
       <div class="stat">
-        <div class="stat-val">$0</div>
-        <div class="stat-label">Amount spent on hardware<br/>to get these gains</div>
+        <div class="stat-val">8 → 22</div>
+        <div class="stat-label">Tokens/sec on the same Mac<br/>@ Q4_K_M, 2.7× faster</div>
       </div>
     </div>
   </div>
@@ -91,35 +91,41 @@
 <!-- Section 2: side-by-side -->
 <section class="section section-dark">
   <div class="container">
-    <p class="section-eyebrow">Section 2 · Before &amp; After on the same box</p>
-    <h2>Two snapshots, 18 months apart</h2>
+    <p class="section-eyebrow">Section 2 · Head-to-head on the same box</p>
+    <h2>The best model a 128GB Mac could run — 2024 vs 2026</h2>
+    <p class="body">
+      Same publisher (Alibaba's Qwen line). Both dense. Both the flagship of
+      their era. Same 128GB Mac. The 2026 model is 63% smaller and 2.7× faster
+      while scoring 21% higher on MMLU-Pro and 79% higher on GPQA Diamond.
+      <strong>That is algorithmic progress — not silicon progress.</strong>
+    </p>
     <div class="snapshot-grid">
       <div class="snapshot">
-        <p class="snapshot-date">October 2024</p>
-        <div class="snapshot-model">Llama 3 70B</div>
-        <div class="snapshot-meta">dense · Q4 · 40GB · ~9 TPS</div>
+        <p class="snapshot-date">September 2024</p>
+        <div class="snapshot-model">Qwen 2.5 72B</div>
+        <div class="snapshot-meta">dense · Q4_K_M · 41GB · ~8 TPS</div>
         <div class="snapshot-scores">
-          <div><span>MMLU-Pro</span><strong>53</strong></div>
-          <div><span>GPQA Diamond</span><strong>39</strong></div>
-          <div><span>SWE-bench Verified</span><strong>14%</strong></div>
+          <div><span>Params</span><strong>72B</strong></div>
+          <div><span>MMLU-Pro</span><strong>71</strong></div>
+          <div><span>GPQA Diamond</span><strong>49</strong></div>
         </div>
-        <p class="snapshot-note">Felt like magic at the time. Could barely write a unit test.</p>
+        <p class="snapshot-note">The reigning dense flagship for open-weight users in 2024. Felt like the ceiling of what a Mac could do.</p>
       </div>
       <div class="snapshot hero-snapshot">
         <p class="snapshot-date">April 2026</p>
         <div class="snapshot-model">Qwen 3.6 27B</div>
-        <div class="snapshot-meta">dense · Q8 · 37GB · 11 TPS (measured)</div>
+        <div class="snapshot-meta">dense · Q4_K_M · 14GB · ~22 TPS (est.)</div>
         <div class="snapshot-scores">
-          <div><span>MMLU-Pro</span><strong>86</strong></div>
-          <div><span>GPQA Diamond</span><strong>88</strong></div>
-          <div><span>SWE-bench Verified</span><strong>77%</strong></div>
+          <div><span>Params</span><strong>27B <em>(-63%)</em></strong></div>
+          <div><span>MMLU-Pro</span><strong>86 <em>(+15)</em></strong></div>
+          <div><span>GPQA Diamond</span><strong>88 <em>(+39)</em></strong></div>
         </div>
-        <p class="snapshot-note">Closes PRs. Solves Olympiad math. Ties Claude 4.5 Opus on Terminal-Bench 2.0.</p>
+        <p class="snapshot-note">Closes PRs. Solves Olympiad math. Ties Claude 4.5 Opus on Terminal-Bench 2.0. All on less silicon than a 2-year-old Mac.</p>
       </div>
     </div>
     <p class="body centered">
       Same machine. Same RAM. Same disk. Same bandwidth. Same power draw.
-      <strong>The model got ~5× better at real software engineering.</strong>
+      <strong>Smaller, faster, and dramatically smarter — in 18 months.</strong>
     </p>
   </div>
 </section>
