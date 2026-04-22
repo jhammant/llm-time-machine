@@ -24,7 +24,7 @@ Live site: **https://jhammant.github.io/llm-time-machine/**
 Benchmark scores are pulled directly from each model's Hugging Face card
 where available. The most recent five models (Qwen 3.6 27B, Gemma 4 26B
 A4B, Qwen 3.5 35B A3B, gpt-oss 20B, Qwen 3 Next 80B) were **directly
-measured** on a 128GB M-series Mac via LM Studio, 3 iterations per
+measured** on a 128GB M5 Max MacBook Pro via LM Studio, 3 iterations per
 scenario, with unique prompts per iteration to defeat KV-cache reuse.
 
 Older models (Llama 2/3, Mistral, Mixtral) use MMLU scores rescaled to
