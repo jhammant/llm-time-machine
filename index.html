@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>The LLM Time Machine — How Much Smarter Your Mac Got Without Changing</title>
+<meta name="description" content="Your hardware didn't change. The models running on it tripled in capability in 18 months. Interactive timeline of open-weight LLM progress on consumer Macs." />
+<meta property="og:title" content="The LLM Time Machine" />
+<meta property="og:description" content="Your Mac didn't get smarter. The models running on it did." />
+<meta property="og:type" content="website" />
+<link rel="stylesheet" href="css/style.css" />
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+</head>
+<body>
+
+<header class="hero">
+  <div class="container">
+    <p class="eyebrow">The LLM Time Machine</p>
+    <h1>Your Mac didn't get smarter.<br><span class="accent">The models running on it did.</span></h1>
+    <p class="lede">
+      Since July 2023 consumer Apple Silicon hasn't radically changed.
+      The best open-weight LLM you can run on a 128GB Mac has gotten
+      <strong>~4× smarter</strong> on hard benchmarks in 18 months —
+      with zero hardware upgrades.
+    </p>
+    <p class="lede">
+      Here's the data — and why almost nobody is tracking it.
+    </p>
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-val">22 → 86</div>
+        <div class="stat-label">Best MMLU-Pro on 128GB Mac<br/>(Jul 2023 → Apr 2026)</div>
+      </div>
+      <div class="stat">
+        <div class="stat-val">0% → 77%</div>
+        <div class="stat-label">Best SWE-bench Verified<br/>(same hardware)</div>
+      </div>
+      <div class="stat">
+        <div class="stat-val">$0</div>
+        <div class="stat-label">Amount spent on hardware<br/>to get these gains</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Section 1: the rearview timeline -->
+<section class="section">
+  <div class="container">
+    <p class="section-eyebrow">Section 1 · The rearview</p>
+    <h2>What fit on your Mac, and how smart it was</h2>
+    <p class="body">
+      Every dot below is a notable open-weight model released between July 2023
+      and today. The <strong>size of the dot</strong> is total parameters. The
+      <strong>fill</strong> is dense (solid) vs. MoE (outline). Pick a RAM
+      budget — only models that actually fit are shown. Switch the Y-axis to
+      see different benchmarks.
+    </p>
+
+    <div class="chart-controls">
+      <div class="control">
+        <label>Benchmark:</label>
+        <select id="benchmark-select">
+          <option value="gpqaDiamond">GPQA Diamond</option>
+          <option value="mmluPro" selected>MMLU-Pro</option>
+          <option value="sweBenchVerified">SWE-bench Verified</option>
+        </select>
+      </div>
+      <div class="control">
+        <label>Mac RAM: <span id="ram-value">128GB</span></label>
+        <input type="range" id="ram-slider" min="16" max="192" step="16" value="128" />
+      </div>
+      <div class="control">
+        <label><input type="checkbox" id="show-projections" /> Show projections to 2028</label>
+      </div>
+    </div>
+
+    <div class="chart-wrap">
+      <canvas id="timeline-chart"></canvas>
+    </div>
+
+    <div class="insight">
+      <p><strong>The unlock most people miss:</strong>
+      in late 2023, the best model you could run on a 128GB Mac scored ~35 on
+      MMLU-Pro. In April 2026 it scores 86 — on the same box. That's not a
+      hardware win. It's architecture + training + quantization, all
+      compounding on fixed silicon.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Section 2: side-by-side -->
+<section class="section section-dark">
+  <div class="container">
+    <p class="section-eyebrow">Section 2 · Before &amp; After on the same box</p>
+    <h2>Two snapshots, 18 months apart</h2>
+    <div class="snapshot-grid">
+      <div class="snapshot">
+        <p class="snapshot-date">October 2024</p>
+        <div class="snapshot-model">Llama 3 70B</div>
+        <div class="snapshot-meta">dense · Q4 · 40GB · ~9 TPS</div>
+        <div class="snapshot-scores">
+          <div><span>MMLU-Pro</span><strong>53</strong></div>
+          <div><span>GPQA Diamond</span><strong>39</strong></div>
+          <div><span>SWE-bench Verified</span><strong>14%</strong></div>
+        </div>
+        <p class="snapshot-note">Felt like magic at the time. Could barely write a unit test.</p>
+      </div>
+      <div class="snapshot hero-snapshot">
+        <p class="snapshot-date">April 2026</p>
+        <div class="snapshot-model">Qwen 3.6 27B</div>
+        <div class="snapshot-meta">dense · Q8 · 37GB · 11 TPS (measured)</div>
+        <div class="snapshot-scores">
+          <div><span>MMLU-Pro</span><strong>86</strong></div>
+          <div><span>GPQA Diamond</span><strong>88</strong></div>
+          <div><span>SWE-bench Verified</span><strong>77%</strong></div>
+        </div>
+        <p class="snapshot-note">Closes PRs. Solves Olympiad math. Ties Claude 4.5 Opus on Terminal-Bench 2.0.</p>
+      </div>
+    </div>
+    <p class="body centered">
+      Same machine. Same RAM. Same disk. Same bandwidth. Same power draw.
+      <strong>The model got ~5× better at real software engineering.</strong>
+    </p>
+  </div>
+</section>
+
+<!-- Section 3: why -->
+<section class="section">
+  <div class="container">
+    <p class="section-eyebrow">Section 3 · Why is this happening?</p>
+    <h2>Four levers, none of them hardware</h2>
+    <div class="levers">
+      <div class="lever">
+        <div class="lever-icon">A</div>
+        <h3>Architecture</h3>
+        <p>Multi-Token Prediction, Gated DeltaNet, hybrid state-space models,
+        extreme-sparsity MoE. A 2026 27B dense uses its weights smarter than
+        a 2024 70B did. Expect another 2–3× effective quality per active
+        parameter in the next 18 months.</p>
+      </div>
+      <div class="lever">
+        <div class="lever-icon">Q</div>
+        <h3>Quantization</h3>
+        <p>Q4_K_M is ~95% the quality of full precision at 25% the size.
+        New 2-bit research quants (QTIP, SpinQuant, 1.58-bit) push toward
+        another 2× compression at Q4-like quality. Your RAM keeps "growing."</p>
+      </div>
+      <div class="lever">
+        <div class="lever-icon">T</div>
+        <h3>Training data</h3>
+        <p>Better curation, synthetic data from frontier models, reinforcement
+        learning with verifiable rewards (RLVR). A modern 27B sees vastly
+        higher-quality training signal than a 2023 70B did.</p>
+      </div>
+      <div class="lever">
+        <div class="lever-icon">P</div>
+        <h3>Post-training</h3>
+        <p>The biggest open secret. Distillation from frontier closed models
+        (Claude, GPT-5) into open-weight students, aggressive RLHF, chain-of-
+        thought injection. Most of a model's "feel" comes from here — and it's
+        the most rapidly improving stage.</p>
+      </div>
+    </div>
+    <p class="body centered">
+      All four of these happen on <em>your</em> silicon. All four compound.
+      None of them require you to buy anything.
+    </p>
+  </div>
+</section>
+
+<!-- Section 4: dense vs MoE explainer with graphic -->
+<section class="section section-dark">
+  <div class="container">
+    <p class="section-eyebrow">Section 4 · The dense vs MoE story</p>
+    <h2>Why the smartest model is also the slowest</h2>
+    <p class="body">
+      In April 2026, Qwen 3.6 27B (dense) beats every MoE peer on benchmarks —
+      including an 80B MoE. And on a Mac, it's also <strong>dead last on
+      generation speed</strong>. Both facts have the same cause: Qwen 3.6
+      activates all 27B parameters for every token. MoE peers activate ~3B.
+    </p>
+    <img src="images/arch_explainer.png" alt="Dense vs MoE architecture comparison showing active parameters" class="figure" />
+    <p class="body">
+      Dense pays per token in latency to deliver per-token intelligence.
+      MoE pays in total RAM footprint to deliver per-token speed.
+      Your 128GB Mac is equipped for either — that's why this hardware
+      is surprisingly future-proof.
+    </p>
+  </div>
+</section>
+
+<!-- Section 5: projections -->
+<section class="section">
+  <div class="container">
+    <p class="section-eyebrow">Section 5 · The windshield</p>
+    <h2>Where this goes next</h2>
+    <p class="body">
+      Projecting conservatively from 2023–2026 trend lines — architecture +
+      quantization + training wins all compounding — here's what your 128GB
+      Mac likely runs in 12 and 24 months.
+    </p>
+    <div class="projection-grid">
+      <div class="projection">
+        <p class="proj-date">April 2027 (est.)</p>
+        <h3>Qwen-3.7-class or Llama-5-dense</h3>
+        <ul>
+          <li>MMLU-Pro: <strong>~90</strong> (today's closed-frontier band)</li>
+          <li>GPQA Diamond: <strong>~90</strong></li>
+          <li>SWE-bench Verified: <strong>~83%</strong></li>
+          <li>Speed on your Mac: <strong>~22 TPS</strong> (new quants)</li>
+        </ul>
+      </div>
+      <div class="projection">
+        <p class="proj-date">April 2028 (est.)</p>
+        <h3>Open-weight matches today's closed frontier</h3>
+        <ul>
+          <li>GPT-5 / Claude Opus 4.5-band capability</li>
+          <li>200B MoE at ~15B active, ~100GB on disk</li>
+          <li>Fits your 128GB Mac natively, ~15–25 TPS</li>
+          <li>The gap between local and closed is down to agentic tooling + scale, not raw intelligence</li>
+        </ul>
+      </div>
+    </div>
+    <div class="insight insight-warn">
+      <p><strong>Caveat:</strong> Projections are extrapolation from observed
+      trends, not predictions of specific models. But every lever (architecture,
+      quantization, post-training) has years of runway left. The surprise would
+      be if progress <em>slowed</em>, not continued.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Section 6: what to do -->
+<section class="section section-accent">
+  <div class="container">
+    <h2>So what?</h2>
+    <div class="takeaways">
+      <div class="takeaway">
+        <h3>Don't buy new Mac hardware for LLMs in 2026</h3>
+        <p>Your 128GB M-series is future-proof for ~2 more years. The models
+        improve faster than the hardware you'd replace it with.</p>
+      </div>
+      <div class="takeaway">
+        <h3>Swap models, not machines</h3>
+        <p>Plan to download a new flagship every 3–6 months. That's where
+        all your gains come from now.</p>
+      </div>
+      <div class="takeaway">
+        <h3>Dense for hard problems, MoE for fast work</h3>
+        <p>Keep both on disk. Route reasoning / coding work to Qwen 3.6 27B
+        dense. Route agent loops + autocomplete to Qwen 3.5 35B-A3B or
+        gpt-oss 20B.</p>
+      </div>
+      <div class="takeaway">
+        <h3>Most people miss this story entirely</h3>
+        <p>The "AI is stuck" narrative focuses on closed frontier scaling.
+        Meanwhile the local open-weight world is compounding gains on fixed
+        hardware. That's the under-covered story.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>Data: publisher-reported benchmarks from each model's Hugging Face card.
+      Qwen 3.6 / Gemma 4 / Qwen 3.5 / Qwen 3 Next / gpt-oss numbers are
+      <a href="https://github.com/jhammant/llm-time-machine">directly measured</a>
+      on a 128GB M-series Mac via LM Studio with KV-cache-defeating unique prompts.
+    </p>
+    <p>Older benchmarks (Llama 2 / 3, Mistral, Mixtral) use MMLU rescaled to
+      MMLU-Pro equivalent — MMLU-Pro as a benchmark was only standardized in 2024.
+      Projection numbers are informed extrapolation, labeled as such.</p>
+    <p class="credit">Built with Claude Code · <a href="https://github.com/jhammant/llm-time-machine">source on GitHub</a></p>
+  </div>
+</footer>
+
+<script src="js/data.js"></script>
+<script src="js/charts.js"></script>
+</body>
+</html>
