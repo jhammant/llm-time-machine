@@ -32,9 +32,12 @@
     { id: "qwen3.6-27b",       name: "Qwen 3.6 27B",        publisher: "Alibaba",   releaseDate: "2026-04", arch: "dense", totalB: 27,  activeB: 27,   sizeQ4Gb: 14, mmluPro: 86.2, gpqaDiamond: 87.8, sweBenchVerified: 77.2,notes: "Hero of this story. Measured at 11 TPS @ Q8 on this Mac.", isMeasured: true, isHero: true },
   ];
 
+  // Projections — local and closed frontier advance in lockstep from 2026.
+  // Parity already exists today (Qwen 3.6 27B ties Claude 4.5 Opus on multiple
+  // benchmarks). These points represent continued joint advance, not catch-up.
   const projections = [
-    { id: "proj-2027", name: "Projected: new-quant 27B dense", releaseDate: "2027-04", arch: "dense", totalB: 27, activeB: 27, sizeQ4Gb: 8,   mmluPro: 90, gpqaDiamond: 90, sweBenchVerified: 83, notes: "2-bit quants preserving Q4 quality + 1 year of post-training wins.", isProjection: true },
-    { id: "proj-2028", name: "Projected: frontier parity",     releaseDate: "2028-04", arch: "moe",   totalB: 200,activeB: 15, sizeQ4Gb: 100, mmluPro: 93, gpqaDiamond: 93, sweBenchVerified: 90, notes: "Open-weight reaches today's closed-frontier capability.", isProjection: true },
+    { id: "proj-2027", name: "Local keeps pace with closed frontier", releaseDate: "2027-04", arch: "dense", totalB: 27, activeB: 27, sizeQ4Gb: 8,   mmluPro: 91, gpqaDiamond: 91, sweBenchVerified: 85, notes: "Same intelligence tier as whatever Claude/GPT ships in 2027. New 2-bit quants + speculative decoding push to ~40 TPS on same hardware.", isProjection: true },
+    { id: "proj-2028", name: "Intelligence parity; moats move to tooling", releaseDate: "2028-04", arch: "moe", totalB: 150, activeB: 10, sizeQ4Gb: 75, mmluPro: 94, gpqaDiamond: 94, sweBenchVerified: 92, notes: "Open-weight tracks closed frontier within a few points on every standard benchmark. Closed-model advantages shift to infrastructure: 10M+ context, continual learning, agent orchestration, real-time tool use.", isProjection: true },
   ];
 
   // Approximate TPS estimator for 128GB M-Max-class Apple Silicon via LM Studio.
